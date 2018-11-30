@@ -1,0 +1,16 @@
+{
+    "extName": {
+        "message": "Kharbesh",
+        "description": "Extension name"
+    },
+
+    "extDescription": {
+        "message": "Chrome extension for doodling and highlighting on any webpage.",
+        "description": "Extension description"
+    },
+
+    "tooltip": {
+        "message": "Kharbesh\n\nLeft-click to open toolbox!\nRight-click for options.",
+        "description": "tooltip description"
+    }
+}
