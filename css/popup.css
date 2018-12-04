@@ -1,6 +1,7 @@
 .mainPopup {
-  width: 200px;
-  tr, td {
+    width: 200px;
+}
+
+.mainPopup tr,td {
     border: 1px solid black;
-  }
 }
