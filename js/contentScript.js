@@ -1,3 +1,7 @@
+// Adding popup icon (bubble) to the top of the page
+let bubbleDOM = document.createElement('img');
+initiateSelectionBubble();
+
 // To receive any message from other scripts
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
@@ -102,3 +106,58 @@ function getSafeRanges(dangerous) {
     // Send to Console
     return rs.concat(re);
 }
+
+// To show popup icon (bubble) after text selection
+// TODO 1- Enhancement on detecting mouse position more accurately.
+// TODO 2- Solve the issue when clicking on selected text to deselect it, selectionRange is not updated.
+document.addEventListener("mouseup", function (e) {
+    if(window.getSelection().toString().length > 0 && window.getSelection().toString() !== "") {
+        renderBubble(e.clientX, e.clientY);
+    } else {
+        // Hide the bubble if no text is selected
+        bubbleDOM.style.visibility = 'hidden';
+        bubbleDOM.style.display = 'none';
+    }
+});
+
+// document.addEventListener("click", function (e) {
+//     if(window.getSelection().toString().length <= 0) {
+//         bubbleDOM.style.visibility = 'hidden';
+//         bubbleDOM.style.display = 'none';
+//     }
+// });
+
+//To hide popup icon (bubble) when deselecting text
+// document.addEventListener("mousedown", function () {
+//     if(!window.getSelection().toString()) {
+//         bubbleDOM.style.visibility = 'hidden';
+//     }
+// });
+
+function initiateSelectionBubble() {
+    bubbleDOM.setAttribute('class', 'selection_bubble');
+    bubbleDOM.src = chrome.extension.getURL("images/highlighter.png");
+    bubbleDOM.style.width = '20px';
+    bubbleDOM.style.height = '20px';
+    bubbleDOM.style.visibility = 'hidden';
+    bubbleDOM.style.display = 'none';
+    bubbleDOM.style.position= 'absolute';
+    document.body.appendChild(bubbleDOM);
+}
+
+// Move the selection bubble to the appropriate location.
+function renderBubble(mouseX, mouseY) {
+    bubbleDOM.style.top = mouseY + 'px';
+    bubbleDOM.style.left = mouseX + 'px';
+    bubbleDOM.style.display = 'inline';
+    bubbleDOM.style.visibility = 'visible';
+}
+
+// Handle "Highlight" option from popup Icon
+$(".selection_bubble").click(function () {
+    console.log("test");
+    highlightSelection();
+    bubbleDOM.style.visibility = 'hidden';
+    //deselect text after highlighting it
+    window.getSelection().removeAllRanges();
+});
