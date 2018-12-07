@@ -14,3 +14,16 @@ Still in development phase, for testing:
 5. Note the extension popup on right side of the toolbar :)
 
 * Try the highlighter (on a regular webpage) from: popup page, bubble icon and the context menu on right-click.
+
+Highlight functionality - screenshots: 
+--
+![popupPage](https://github.com/AreejQadomi/Kharbesh/blob/master/images/screenshots/popupPage.png)
+
+
+![buubleIcon](https://github.com/AreejQadomi/Kharbesh/blob/master/images/screenshots/bubbleIcon.png)
+
+
+![contextMenu](https://github.com/AreejQadomi/Kharbesh/blob/master/images/screenshots/contextMenu.png)
+
+
+![firstTimeTooltip](https://github.com/AreejQadomi/Kharbesh/blob/master/images/screenshots/firstTimeTooltip.png)
