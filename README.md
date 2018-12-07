@@ -1,9 +1,9 @@
 # Kharbesh
 A git repository for Chrome extension that allows you to doodle and scribble on any web page.
 
-Still in developement phase, for testing:
-
-1.Clone or download the repository.
+Still in development phase, for testing:
+--
+1. Clone or download the repository.
 
 2. Go to chrome://extensions
 
