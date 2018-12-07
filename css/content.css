@@ -1,0 +1,42 @@
+.selectionBorder {
+    border: 1px solid red;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip_text {
+    visibility: visible;
+    position: absolute;
+    width: max-content;
+    padding: 5px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    z-index: 1;
+    bottom: 160%;
+    left: -10%;
+    transition: opacity 0.3s;
+    animation: cssAnimation 0s ease-in 3s forwards;
+}
+
+.tooltip .tooltip_text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+@keyframes cssAnimation {
+    to {
+        visibility: hidden;
+        opacity: 0;
+    }
+}

@@ -40,6 +40,7 @@ function highlightSelection() {
 
 function highlightRange(range) {
     let highlightNode = document.createElement("div");
+    highlightNode.className = 'kharbesh_highlights';
     highlightNode.style.backgroundColor = '#FFFF00';
     highlightNode.style.display = 'inline';
     range.surroundContents(highlightNode);
@@ -111,7 +112,7 @@ function getSafeRanges(dangerous) {
 // TODO 1- Enhancement on detecting mouse position more accurately.
 // TODO 2- Solve the issue when clicking on selected text to deselect it, selectionRange is not updated.
 document.addEventListener("mouseup", function (e) {
-    if(window.getSelection().toString().length > 0 && window.getSelection().toString() !== "") {
+    if (window.getSelection().toString().length > 0 && window.getSelection().toString() !== "") {
         renderBubble(e.clientX, e.clientY);
     } else {
         // Hide the bubble if no text is selected
@@ -120,20 +121,6 @@ document.addEventListener("mouseup", function (e) {
     }
 });
 
-// document.addEventListener("click", function (e) {
-//     if(window.getSelection().toString().length <= 0) {
-//         bubbleDOM.style.visibility = 'hidden';
-//         bubbleDOM.style.display = 'none';
-//     }
-// });
-
-//To hide popup icon (bubble) when deselecting text
-// document.addEventListener("mousedown", function () {
-//     if(!window.getSelection().toString()) {
-//         bubbleDOM.style.visibility = 'hidden';
-//     }
-// });
-
 function initiateSelectionBubble() {
     bubbleDOM.setAttribute('class', 'selection_bubble');
     bubbleDOM.src = chrome.extension.getURL("images/highlighter.png");
@@ -141,7 +128,7 @@ function initiateSelectionBubble() {
     bubbleDOM.style.height = '20px';
     bubbleDOM.style.visibility = 'hidden';
     bubbleDOM.style.display = 'none';
-    bubbleDOM.style.position= 'absolute';
+    bubbleDOM.style.position = 'absolute';
     document.body.appendChild(bubbleDOM);
 }
 
@@ -155,9 +142,32 @@ function renderBubble(mouseX, mouseY) {
 
 // Handle "Highlight" option from popup Icon
 $(".selection_bubble").click(function () {
-    console.log("test");
     highlightSelection();
     bubbleDOM.style.visibility = 'hidden';
-    //deselect text after highlighting it
-    window.getSelection().removeAllRanges();
+    window.getSelection().removeAllRanges(); //deselect text after highlighting it
 });
+
+// Show red border around the highlighted text on click
+$(document).on('click', '.kharbesh_highlights', function () {
+    $(this).toggleClass("selectionBorder");
+
+    // if it's the first time for the user, show a message to him/her.
+    if (!window.localStorage.isReturningVisitor) {
+        $(this).addClass("tooltip");
+        $(this).append("<span class='tooltip_text'>Double click to remove the highlight.</span>");
+        window.localStorage.isReturningVisitor = true;
+    }
+});
+
+// Remove the highlight on double click
+$(document).on('dblclick', '.kharbesh_highlights', function () {
+    $(this).contents().unwrap();
+});
+
+// Remove all highlights in the page
+// (Not used yet)
+function removeAllHighlights() {
+    $("div.kharbesh_highlights").each(function () {
+        $(this).contents().unwrap();
+    });
+}
