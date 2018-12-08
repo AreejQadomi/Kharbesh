@@ -19,6 +19,12 @@ $(function () {
         });
     });
 
+    // Expand highlighter colors list on right click
+    $(document).on('contextmenu', '#highlighter', function () {
+        $(".highlightColors").toggleClass("expandableColors");
+        return false; // cancel default menu
+    });
+
     $("#pencil").click(function () {
         //send message to the injected script to execute the show pencil function
         chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {

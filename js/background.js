@@ -27,3 +27,10 @@ chrome.contextMenus.onClicked.addListener(function (clickData) {
         });
     }
 });
+
+// Get the initial color value
+chrome.storage.sync.get('color', (values) => {
+    let color = values.color ? values.color : "yellow";
+    console.log(`highlight color is ${color}`);
+    //chrome.contextMenus.update(color, {checked: true});
+});

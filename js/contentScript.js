@@ -49,7 +49,7 @@ function highlightRange(range) {
 function getSafeRanges(dangerous) {
     let xm = document.createRange();
     let a = dangerous.commonAncestorContainer;
-    // Starts -- Work inward from the start, selecting the largest safe range
+    // Starts -- Work inward from the start, selescting the largest safe range
     let s = new Array(0), rs = new Array(0);
     if (dangerous.startContainer !== a)
         for (let i = dangerous.startContainer; i !== a; i = i.parentNode)
@@ -123,7 +123,7 @@ document.addEventListener("mouseup", function (e) {
 
 function initiateSelectionBubble() {
     bubbleDOM.setAttribute('class', 'selection_bubble');
-    bubbleDOM.src = chrome.extension.getURL("images/highlighter.png");
+    bubbleDOM.src = chrome.extension.getURL("images/highlighter_yellow.png");
     bubbleDOM.style.width = '20px';
     bubbleDOM.style.height = '20px';
     bubbleDOM.style.visibility = 'hidden';

@@ -34,3 +34,28 @@ table tr td:last-of-type {
     border-radius: 10px;
     box-shadow: 1px 2px 5px 1px #888888;
 }
+
+#highlighter {
+    display: inline;
+    position: relative;
+}
+
+.highlightColors {
+    visibility: hidden;
+    position: absolute;
+    left: -700%;
+    margin-left: -20px;
+    bottom: -260%;
+    display: none;
+}
+
+.highlightColors button {
+    margin-bottom: 2px;
+    margin-right: 2px;
+    opacity: 1;
+}
+
+.expandableColors {
+    visibility: visible;
+    display: inline-flex;
+}
